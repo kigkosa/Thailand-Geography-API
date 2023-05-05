@@ -30,3 +30,6 @@ List the ready features here:
 
 
 Code free, some functions are in the test period.If broken, will not take any responsibility
+
+
+ขอขอบคุณข้อมูลจาก <a href="https://github.com/thailand-geography-data/thailand-geography-json">https://github.com/thailand-geography-data/thailand-geography-json</a>
