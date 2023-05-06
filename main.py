@@ -15,9 +15,9 @@ client = pymongo.MongoClient("mongodb://localhost:27017/")
 db = client["thailand_geography"]
 
 
-def get_geographys(คำค้นหา,id):
+def get_geographys(keyword,id):
     collection = db["geography"]
-    _q = collection.find({id:  { "$regex": "^"+คำค้นหา+".*", "$options": "i" }})
+    _q = collection.find({id:  { "$regex": "^"+keyword+".*", "$options": "i" }})
     _subdistricts  = {}
     _x_id = 0
     for q in _q:
@@ -41,31 +41,31 @@ def get_geographys(คำค้นหา,id):
 
 # Th
 @app.get("/get_geographys/subdistrictNameTh",tags=["ค้นหาทั่งหมด"])
-async def ดึงข้อมูลจากทั่งหมดตำบล(คำค้นหา):
-    return get_geographys(คำค้นหา,"subdistrictNameTh")
+async def ดึงข้อมูลจากทั่งหมดตำบล(keyword):
+    return get_geographys(keyword,"subdistrictNameTh")
 @app.get("/get_geographys/districtNameTh",tags=["ค้นหาทั่งหมด"])
-async def ดึงข้อมูลจากทั่งหมดจากอำเภอ(คำค้นหา):
-    return get_geographys(คำค้นหา,"districtNameTh")
+async def ดึงข้อมูลจากทั่งหมดจากอำเภอ(keyword):
+    return get_geographys(keyword,"districtNameTh")
 @app.get("/get_geographys/provinceNameTh",tags=["ค้นหาทั่งหมด"])
-async def ดึงข้อมูลจากทั่งหมดจากจังหวัด(คำค้นหา):
-    return get_geographys(คำค้นหา,"provinceNameTh")
+async def ดึงข้อมูลจากทั่งหมดจากจังหวัด(keyword):
+    return get_geographys(keyword,"provinceNameTh")
 
 # En
 @app.get("/get_geographys/subdistrictNameEn",tags=["ค้นหาทั่งหมด"])
-async def ดึงข้อมูลจากทั่งหมดตำบลภาษาอังกฤษ(คำค้นหา):
-    return get_geographys(คำค้นหา,"subdistrictNameEn")
+async def ดึงข้อมูลจากทั่งหมดตำบลภาษาอังกฤษ(keyword):
+    return get_geographys(keyword,"subdistrictNameEn")
 @app.get("/get_geographys/districtNameEn",tags=["ค้นหาทั่งหมด"])
-async def ดึงข้อมูลจากทั่งหมดจากอำเภอภาษาอังกฤษ(คำค้นหา):
-    return get_geographys(คำค้นหา,"districtNameEn")
+async def ดึงข้อมูลจากทั่งหมดจากอำเภอภาษาอังกฤษ(keyword):
+    return get_geographys(keyword,"districtNameEn")
 @app.get("/get_geographys/provinceNameEn",tags=["ค้นหาทั่งหมด"])
-async def ดึงข้อมูลจากทั่งหมดจากจังหวัดภาษาอังกฤษ(คำค้นหา):
-    return get_geographys(คำค้นหา,"provinceNameEn")
+async def ดึงข้อมูลจากทั่งหมดจากจังหวัดภาษาอังกฤษ(keyword):
+    return get_geographys(keyword,"provinceNameEn")
 
 
 @app.get("/get_subdistricts",tags=["ค้นหาเฉพาะ"])
-async def ดึงข้อมูลจากตำบล(คำค้นหา):
+async def ดึงข้อมูลจากตำบล(keyword):
     collection = db["subdistricts"]
-    _q = collection.find({"subdistrictNameTh":  { "$regex": "^"+คำค้นหา+".*", "$options": "i" }})
+    _q = collection.find({"subdistrictNameTh":  { "$regex": "^"+keyword+".*", "$options": "i" }})
     _subdistricts  = {}
     _x_id = 0
     for q in _q:
@@ -85,9 +85,9 @@ async def ดึงข้อมูลจากตำบล(คำค้นหา
 
 
 @app.get("/get_districts",tags=["ค้นหาเฉพาะ"])
-async def ดึงข้อมูลจากอำเภอ(คำค้นหา):
+async def ดึงข้อมูลจากอำเภอ(keyword):
     collection = db["districts"]
-    _q = collection.find({"districtNameTh":  { "$regex": "^"+คำค้นหา+".*", "$options": "i" }})
+    _q = collection.find({"districtNameTh":  { "$regex": "^"+keyword+".*", "$options": "i" }})
     _districts  = {}
     _x_id = 0
     for q in _q:
@@ -106,9 +106,9 @@ async def ดึงข้อมูลจากอำเภอ(คำค้นห
 
 
 @app.get("/get_province",tags=["ค้นหาเฉพาะ"])
-async def ดึงข้อมูลจากจังหวัด(คำค้นหา):
+async def ดึงข้อมูลจากจังหวัด(keyword):
     collection = db["provinces"]
-    _q = collection.find({"provinceNameTh":  { "$regex": "^"+คำค้นหา+".*", "$options": "i" }})
+    _q = collection.find({"provinceNameTh":  { "$regex": "^"+keyword+".*", "$options": "i" }})
     _province  = {}
     _x_id = 0
     for q in _q:
